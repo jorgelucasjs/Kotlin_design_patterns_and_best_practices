@@ -2,9 +2,11 @@ fun main(args: Array<String>) {
     //reviewingKotlinDatastructures()
 
     val player = Player()
-    player.name = "Alex"
+    val roll = player.rollDice()
+
+    println(roll)
 
     //Custom setters and getters
-    // Pag -> 30(57)
+    // Pag -> 32(59)
 
 }
