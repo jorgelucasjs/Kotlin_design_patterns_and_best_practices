@@ -37,3 +37,47 @@ class Player: DiceRoller{
     override fun rollDice(): Int = Random.nextInt(0, 6)
 
 }
+
+
+//======{ Inheritance }=====
+open class ActivePlayer(name: String) {
+
+}
+
+class ConfusedPlayer(name: String ):ActivePlayer(name)
+
+
+//==========Data classes==============
+
+data class User(val username: String, private val password: String){
+    fun hidePassword() = "*".repeat(password.length)
+}
+
+//============[Extension functions]=============
+fun String.hidePassword() = "*".repeat(this.length)
+
+
+
+fun run(){
+    val password: String = "secretpassword"
+    println("Password: ${password.hidePassword()}")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
