@@ -1,3 +1,4 @@
+import patterns.abstract_factory.abstract_factory
 import patterns.factory_method.factoryMethod
 import patterns.singleton.singletonPattern
 
@@ -20,5 +21,6 @@ fun main(args: Array<String>) {
     //==================={patters}=================
     //singletonPattern()
     //factoryMethod()
+    //abstract_factory()
 
 }
