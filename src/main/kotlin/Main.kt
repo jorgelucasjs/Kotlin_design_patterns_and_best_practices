@@ -1,6 +1,7 @@
 import patterns.abstract_factory.abstract_factory
 import patterns.factory_method.factoryMethod
 import patterns.singleton.singletonPattern
+import patterns.understanding_structural_patterns.runAdapter
 import patterns.understanding_structural_patterns.runDecorator
 
 fun main(args: Array<String>) {
@@ -24,6 +25,7 @@ fun main(args: Array<String>) {
     //factoryMethod()
     //abstract_factory()
 
-    runDecorator()
+    //runDecorator()
+    runAdapter()
 
 }
