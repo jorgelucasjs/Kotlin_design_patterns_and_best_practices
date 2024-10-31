@@ -1,0 +1,3 @@
+package patterns.getting_familiar_with_behavioral_patterns
+
+//page 125
