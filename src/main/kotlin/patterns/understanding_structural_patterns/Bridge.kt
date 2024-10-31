@@ -3,48 +3,64 @@ package patterns.understanding_structural_patterns
 //creating more flexible, maintainable code. It helps in separating abstractions from their
 // implementations, allowing for better extensibility
 
-interface Trooper {
+interface Trooper1 {
     fun move(x: Long, y: Long)
     fun attackRebel(x: Long, y: Long)
     fun shout(): String
 }
 
-open class StormTrooper : Trooper {
+typealias PointsOfDamage = Long
+typealias Meters = Int
+const val RIFLE_DAMAGE: PointsOfDamage = 3L
+const val REGULAR_SPEED: Meters = 1
+
+interface Weapon {
+    fun attack(x: Long, y: Long): PointsOfDamage
+}
+interface Legs {
+    fun move(x: Long, y: Long): Meters
+}
+
+
+data class StormTrooper(
+    private val weapon: Weapon,
+    private val legs: Legs
+) : Trooper1 {
     override fun move(x: Long, y: Long) {
-        // Move at normal speed
+        legs.move(x, y)
     }
-
     override fun attackRebel(x: Long, y: Long) {
-        // Missed most of the time
+        weapon.attack(x, y)
+    }
+
+    override fun shout(): String {
+        TODO("Not yet implemented")
     }
 }
 
-open class ShockTrooper : Trooper {
-    override fun move(x: Long, y: Long) {
-        // Moves slower than regular StormTrooper
-    }
-
-    override fun attackRebel(x: Long, y: Long) {
-        // Sometimes hits
-    }
+//Now, we can provide some implementations for our interfaces:
+class Rifle : Weapon {
+    override fun attack(x: Long, y: Long) = RIFLE_DAMAGE
+}
+class Flamethrower : Weapon {
+    override fun attack(x: Long, y: Long)= RIFLE_DAMAGE * 2
+}
+class Batton : Weapon {
+    override fun attack(x: Long, y: Long)= RIFLE_DAMAGE * 3
 }
 
-class RiotControlTrooper: StormTrooper(){
-    override fun attackRebel(x: Long, y: Long) {
-        // Has an electric baton, stay away!
-    }
+//Next, we’ll see how we can make the following legs move:
+class RegularLegs : Legs {
+    override fun move(x: Long, y: Long) = REGULAR_SPEED
+}
+class AthleticLegs : Legs {
+    override fun move(x: Long, y: Long) = REGULAR_SPEED * 2
 }
 
-class FlameTrooper : ShockTrooper() {
-    override fun attackRebel(x: Long, y: Long) {
-        // Uses flametrower, dangerous!
-    }
-}
+fun runBridge(){
+    val stormTrooper = StormTrooper(Rifle(), RegularLegs())
+    val flameTrooper = StormTrooper(Flamethrower(), RegularLegs())
+    val scoutTrooper = StormTrooper(Rifle(), AthleticLegs())
 
-class ScoutTrooper : ShockTrooper() {
-    override fun move(x: Long, y: Long) {
-        // Runs faster
-    }
+    println(listOf(stormTrooper, flameTrooper, scoutTrooper))
 }
-
-//PAG => 93
